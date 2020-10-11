@@ -40,8 +40,7 @@ if has('langmap') && exists('+langnoremap')
 	set langnoremap
 endif
 set fileencodings=usc-bom,utf-8,cp936,gb2312
-set autoindent
-set cindent
+filetype indent on
 set shortmess=atI
 set nu
 set tabstop=4
@@ -103,7 +102,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'enricobacis/vim-airline-clock'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nathanaelkane/vim-indent-guides'
-"Plugin 'kovisoft/slimv'
+"Plugin 'kovisoft/slimv
 Plugin 'puremourning/vimspector'
 Plugin 'humiaozuzu/fcitx-status'
 "Plugin 'iamcco/mathjax-support-for-mkdp'
@@ -164,3 +163,7 @@ nmap <leader><F12> <Plug>VimspectorStepInto
 nmap <leader><F6> <Plug>VimspectorRestart
 nmap <leader><F7> <Plug>VimspectorStop
 set showcmd
+au BufRead,BufNewFile *.fkl set filetype=scheme | set expandtab | retab | RainbowParenthesesToggle
+au BufRead,BufNewFile *.txt RainbowParenthesesToggle
+set list
+set listchars=trail:#
