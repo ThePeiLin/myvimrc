@@ -105,6 +105,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'kovisoft/slimv
 Plugin 'puremourning/vimspector'
 Plugin 'humiaozuzu/fcitx-status'
+Plugin 'ShowTrailingWhitespace'
 "Plugin 'iamcco/mathjax-support-for-mkdp'
 "Plugin 'iamcco/markdown-preview.vim'
 "Plugin 'frazrepo/vim-rainbow'
@@ -134,8 +135,8 @@ let g:airline#extensions#default#layout = [
 let g:airline_skip_empty_sections = 1
 let g:airline_theme='luna'
 set laststatus=2
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
+"nnoremap <C-N> :bn<CR>
+"nnoremap <C-P> :bp<CR>
 let g:rainbow_active = 1
 set ruler
 let g:rbpt_colorpairs = [
@@ -164,6 +165,7 @@ nmap <leader><F6> <Plug>VimspectorRestart
 nmap <leader><F7> <Plug>VimspectorStop
 set showcmd
 au BufRead,BufNewFile *.fkl set filetype=scheme | set expandtab | retab | RainbowParenthesesToggle
+au BufRead,BufNewFile *.cl RainbowParenthesesToggle
 au BufRead,BufNewFile *.txt RainbowParenthesesToggle
-set list
-set listchars=trail:#
+"set wildmode=list:longest
+"set listchars=trail:#
