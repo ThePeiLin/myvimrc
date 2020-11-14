@@ -49,7 +49,7 @@ set shiftwidth=4
 set whichwrap=b,s,<,>,[,]
 set complete=.,w,b,u,t,i
 set hidden
-"set rnu
+set rnu
 set nocp
 "noremap <F12> :w<cr>
 "inoremap <F12> <ESC>:w<cr>
@@ -67,10 +67,6 @@ syntax on
 packadd termdebug
 set cursorcolumn
 set cursorline
-highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
-highlight CursorColumn cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
-highlight LineNr ctermfg=grey
-highlight CursorLineNr ctermbg=grey ctermfg=black
 xnoremap * :<C-u>call <SID>VSetSearch('/')<cr>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VsetSearch('?')<CR>?<C-R>=@/<CR><CR>
 function! s:VSetSearch(cmdtype)
@@ -91,6 +87,23 @@ function! s:setSch()
 	echo "Success."
 endfunction
 command WriteSch :call <SID>setSch()
+function! s:beDark()
+	hi def shit ctermbg=brown ctermfg=white
+	let s:winid=popup_create(['哼哼哼啊啊啊啊啊啊啊啊啊',
+				\'.　　    ▃▆█▇▄▖',
+				\'　　  ▟◤▖　　◥█▎',
+				\'　　◢◤　▐　　　▐▉',
+				\'　▗◤　　 ▂　▗▖　█▎',
+				\'　◤　▗▅▖◥▄　▀◣　█▊',
+				\'▐　▕▎◥▖◣◤　　　◢██',
+				\'█◣　◥▅█▀　　　▐██◤',
+				\'▐█▙▂　　　  ◢██◤',
+				\'　◥██◣　　　◢▄◤',
+				\'　　　▀██▅▇▀'],
+				\#{highlight: 'shit'})
+	"一键黑化辣你眼睛
+endfunction
+command Dark :hi Normal ctermbg=white ctermfg=brown | call <SID>beDark()
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -113,6 +126,10 @@ Plugin 'ShowTrailingWhitespace'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
 call vundle#end()
+highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
+highlight LineNr ctermfg=grey
+highlight CursorLineNr ctermbg=grey ctermfg=black
 filetype plugin indent on
 let g:NERDSpaceDelims=1
 map <C-n> :NERDTreeToggle<cr>
@@ -159,10 +176,11 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 let g:vimspector_enable_mappings = 'HUMAN'
-nmap <F7> <Plug>VimspectorContinue
-nmap <leader><F12> <Plug>VimspectorStepInto
-nmap <leader><F6> <Plug>VimspectorRestart
-nmap <leader><F7> <Plug>VimspectorStop
+let g:SuperTabNoCompleteAfter = ['^','\s','{','}','(',')','[',']']
+"nmap <F7> <Plug>VimspectorContinue
+"nmap <leader><F12> <Plug>VimspectorStepInto
+"nmap <leader><F6> <Plug>VimspectorRestart
+"nmap <leader><F7> <Plug>VimspectorStop
 set showcmd
 au BufRead,BufNewFile *.fkl set filetype=scheme | set expandtab | retab | RainbowParenthesesToggle
 au BufRead,BufNewFile *.cl RainbowParenthesesToggle
