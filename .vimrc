@@ -13,6 +13,7 @@ else
 endif
 set backupdir=~/.vim/backup
 set undodir=~/.undodir
+set path+=/usr/local/include
 set history=50
 set ruler
 set incsearch
@@ -75,18 +76,18 @@ function! s:VSetSearch(cmdtype)
 	let @/='\V' . substitute(escape(@s,a:cmdtype.'\'),'\n','\\n','g')
 	let @s=temp
 endfunction
-function! s:setSch()
-	let w:isWritingSch = exists('w:isWritingSch')? !w:isWritingSch : 1
-	if w:isWritingSch==1
-		vertical let s:term_name=bufname(term_start("scheme"))
-		noremap <C-t> %va("+y
-	else
-		unmap <C-t>
-		execute 'bd! ' . s:term_name
-	endif
-	echo "Success."
-endfunction
-command WriteSch :call <SID>setSch()
+"function! s:setSch()
+"	let w:isWritingSch = exists('w:isWritingSch')? !w:isWritingSch : 1
+"	if w:isWritingSch==1
+"		vertical let s:term_name=bufname(term_start("scheme"))
+"		noremap <C-t> %va("+y
+"	else
+"		unmap <C-t>
+"		execute 'bd! ' . s:term_name
+"	endif
+"	echo 'Success.'
+"endfunction
+"command WriteSch :call <SID>setSch()
 function! s:beDark()
 	hi def shit ctermbg=brown ctermfg=white
 	let s:winid=popup_create(['哼哼哼啊啊啊啊啊啊啊啊啊',
@@ -103,7 +104,7 @@ function! s:beDark()
 				\#{highlight: 'shit'})
 	"一键黑化辣你眼睛
 endfunction
-command Dark :hi Normal ctermbg=white ctermfg=brown | call <SID>beDark()
+"command Dark :hi Normal ctermbg=white ctermfg=brown | call <SID>beDark()
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -130,6 +131,8 @@ highlight CursorLine cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
 highlight CursorColumn cterm=NONE ctermbg=238 ctermfg=NONE guibg=NONE guifg=NONE
 highlight LineNr ctermfg=grey
 highlight CursorLineNr ctermbg=grey ctermfg=black
+highlight PmenuSel ctermbg=black ctermfg=grey
+highlight Pmenu ctermbg=darkgrey ctermfg=white
 filetype plugin indent on
 let g:NERDSpaceDelims=1
 map <C-n> :NERDTreeToggle<cr>
@@ -176,7 +179,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 let g:vimspector_enable_mappings = 'HUMAN'
-let g:SuperTabNoCompleteAfter = ['^','\s','{','}','(',')','[',']']
+let g:SuperTabNoCompleteAfter = ['^','\s','{','}','(',')','[',']','\"']
 "nmap <F7> <Plug>VimspectorContinue
 "nmap <leader><F12> <Plug>VimspectorStepInto
 "nmap <leader><F6> <Plug>VimspectorRestart
