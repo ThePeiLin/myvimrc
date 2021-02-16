@@ -12,7 +12,7 @@ else
 	set undofile
 endif
 set backupdir=~/.vim/backup
-set undodir=~/.undodir
+set undodir=~/.vim/undodir
 set path+=/usr/local/include
 set history=50
 set ruler
@@ -144,6 +144,8 @@ set background=dark
 let g:indent_guides_enable_on_vim_startup=1
 hi IndentGuidesOdd ctermbg=black
 hi IndentGuidesEven ctermbg=darkgrey
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#searchmethod = 'nearest'
 let g:airline#extensions#tabline#enabled = 0
 let g:airline#extension#tabline_sep=' '
 let g:airline#extension#tabline_alt_sep='|'
